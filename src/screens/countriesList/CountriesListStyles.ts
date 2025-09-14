@@ -17,6 +17,20 @@ export const styles = StyleSheet.create({
     fontSize: typography.md,
     color: colors.textSecondary,
   },
+  // Search input
+  searchContainer: {
+    marginBottom: spacing.md,
+  },
+  searchInput: {
+    backgroundColor: colors.backgroundSecondary,
+    borderWidth: 1,
+    borderColor: colors.borderLight,
+    borderRadius: 8,
+    paddingHorizontal: spacing.md,
+    paddingVertical: spacing.sm,
+    fontSize: typography.md,
+    color: colors.text,
+  },
   // Center container for loading/error/empty states
   centerContainer: {
     flex: 1,
@@ -67,11 +81,22 @@ export const styles = StyleSheet.create({
     borderWidth: 1,
     borderColor: colors.borderLight,
   },
+  countryHeader: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    marginBottom: spacing.xs,
+  },
+  flag: {
+    width: 24,
+    height: 16,
+    marginRight: spacing.sm,
+    borderRadius: 2,
+  },
   countryName: {
     fontSize: typography.lg,
     fontWeight: typography.semibold,
     color: colors.text,
-    marginBottom: spacing.xs,
+    flex: 1,
   },
   countryInfo: {
     fontSize: typography.sm,

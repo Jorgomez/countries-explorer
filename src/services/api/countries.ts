@@ -30,6 +30,25 @@ export const countriesApi = {
     }
   },
 
+  async searchCountriesByName(query: string, fields?: string): Promise<CountryCard[]> {
+    try {
+      const fieldsParam = fields || 'name,flags,capital,population,region,cca3';
+      const response = await axios.get<Country[]>(
+        `${API_BASE_URL}/name/${encodeURIComponent(query)}?fields=${fieldsParam}`
+      );
+      
+      return response.data.map(transformCountry);
+    } catch (error) {
+      if (axios.isAxiosError(error)) {
+        if (error.response?.status === 404) {
+          return []; // No results found
+        }
+        throw new Error(`Error searching countries: ${error.message}`);
+      }
+      throw new Error('Unknown error occurred');
+    }
+  },
+
   async getCountryByCode(code: string, fields?: string): Promise<CountryCard> {
     try {
       const fieldsParam = fields || 'name,flags,capital,population,region,cca3';

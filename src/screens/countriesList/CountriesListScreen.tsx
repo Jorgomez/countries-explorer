@@ -1,10 +1,18 @@
-import { View, Text, FlatList, ActivityIndicator, TouchableOpacity } from 'react-native';
+import { View, Text, FlatList, ActivityIndicator, TouchableOpacity, Image, TextInput } from 'react-native';
+import { useState, useCallback } from 'react';
 import { useCountries } from '../../hooks/useCountries';
+import { useDebounce } from '../../hooks/useDebounce';
 import { t } from '../../localization';
 import { styles } from './CountriesListStyles';
+import { colors, spacing, typography } from '../../styles';
 import type { CountryCard } from '../../types/country';
 
 export default function CountriesListScreen() {
+  const [searchText, setSearchText] = useState('');
+  const debouncedSearch = useDebounce(searchText, 400);
+  
+  console.log('📱 CountriesListScreen: searchText:', `"${searchText}"`, 'debounced:', `"${debouncedSearch}"`);
+  
   const {
     countries,
     isLoading,
@@ -16,11 +24,14 @@ export default function CountriesListScreen() {
     nextPage,
     prevPage,
     refetch,
-  } = useCountries();
+  } = useCountries(debouncedSearch);
 
   const renderCountry = ({ item }: { item: CountryCard }) => (
     <View style={styles.countryCard}>
-      <Text style={styles.countryName}>{item.name}</Text>
+      <View style={styles.countryHeader}>
+        <Image source={{ uri: item.flag }} style={styles.flag} />
+        <Text style={styles.countryName}>{item.name}</Text>
+      </View>
       <Text style={styles.countryInfo}>
         {item.capital} • {item.region} • {item.population.toLocaleString()}
       </Text>
@@ -82,6 +93,19 @@ export default function CountriesListScreen() {
   return (
     <View style={styles.container}>
       <Text style={styles.title}>{t('countries.title')}</Text>
+      
+      <View style={styles.searchContainer}>
+        <TextInput
+          style={styles.searchInput}
+          placeholder={t('countries.searchPlaceholder')}
+          value={searchText}
+          onChangeText={setSearchText}
+          placeholderTextColor={colors.textSecondary}
+          autoCapitalize="none"
+          autoCorrect={false}
+          clearButtonMode="while-editing"
+        />
+      </View>
       
       <FlatList
         data={countries}
