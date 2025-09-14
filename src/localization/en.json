@@ -1,0 +1,40 @@
+{
+  "common": {
+    "loading": "Loading...",
+    "error": "Error",
+    "retry": "Retry",
+    "search": "Search",
+    "cancel": "Cancel",
+    "back": "Back",
+    "next": "Next",
+    "previous": "Previous",
+    "loadMore": "Load More",
+    "noResults": "No results found",
+    "tryAgain": "Try again"
+  },
+  "countries": {
+    "title": "Countries Explorer",
+    "searchPlaceholder": "Search countries...",
+    "population": "Population",
+    "capital": "Capital",
+    "region": "Region",
+    "noCapital": "No capital",
+    "details": "Country Details",
+    "backToList": "Back to Countries"
+  },
+  "errors": {
+    "networkError": "Network error. Please check your connection.",
+    "notFound": "Country not found.",
+    "serverError": "Server error. Please try again later.",
+    "unknownError": "An unexpected error occurred."
+  },
+  "language": {
+    "select": "Select Language",
+    "english": "English",
+    "spanish": "Español"
+  },
+  "pagination": {
+    "page": "Page {{current}} of {{total}}",
+    "showing": "Showing {{start}}-{{end}} of {{total}} countries"
+  }
+}

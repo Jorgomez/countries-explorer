@@ -1,0 +1,40 @@
+{
+  "common": {
+    "loading": "Cargando...",
+    "error": "Error",
+    "retry": "Reintentar",
+    "search": "Buscar",
+    "cancel": "Cancelar",
+    "back": "Atrás",
+    "next": "Siguiente",
+    "previous": "Anterior",
+    "loadMore": "Cargar Más",
+    "noResults": "No se encontraron resultados",
+    "tryAgain": "Intentar de nuevo"
+  },
+  "countries": {
+    "title": "Explorador de Países",
+    "searchPlaceholder": "Buscar países...",
+    "population": "Población",
+    "capital": "Capital",
+    "region": "Región",
+    "noCapital": "Sin capital",
+    "details": "Detalles del País",
+    "backToList": "Volver a Países"
+  },
+  "errors": {
+    "networkError": "Error de red. Por favor verifica tu conexión.",
+    "notFound": "País no encontrado.",
+    "serverError": "Error del servidor. Por favor intenta más tarde.",
+    "unknownError": "Ocurrió un error inesperado."
+  },
+  "language": {
+    "select": "Seleccionar Idioma",
+    "english": "English",
+    "spanish": "Español"
+  },
+  "pagination": {
+    "page": "Página {{current}} de {{total}}",
+    "showing": "Mostrando {{start}}-{{end}} de {{total}} países"
+  }
+}
