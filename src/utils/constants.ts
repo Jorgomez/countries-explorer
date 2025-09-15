@@ -8,14 +8,17 @@ export const API_ENDPOINTS = {
 } as const;
 
 // API fields to reduce payload size
-export const API_FIELDS = 'name,flags,capital,population,region,cca3';
+export const API_FIELDS = {
+  BASIC: 'name,flags,capital,population,region,cca3',
+  DETAILED: 'name,flags,capital,population,region,subregion,area,languages,currencies,timezones,borders,tld,continents,cca3',
+} as const;
 
 // Pagination
-export const DEFAULT_PAGE_SIZE = 20;
+export const PAGE_SIZE = 20;
 export const MAX_PAGE_SIZE = 50;
 
 // Debounce timing
-export const SEARCH_DEBOUNCE_MS = 500;
+export const SEARCH_DEBOUNCE_MS = 400;
 
 // Cache configuration
 export const CACHE_TTL_MS = 5 * 60 * 1000; // 5 minutes

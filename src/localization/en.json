@@ -20,7 +20,18 @@
     "region": "Region",
     "noCapital": "No capital",
     "details": "Country Details",
-    "backToList": "Back to Countries"
+    "backToList": "Back to Countries",
+    "officialName": "Official Name",
+    "subregion": "Subregion",
+    "area": "Area",
+    "languages": "Languages",
+    "currencies": "Currencies",
+    "timezones": "Timezones",
+    "borders": "Borders",
+    "domains": "Top Level Domains",
+    "continents": "Continents",
+    "noData": "No data available",
+    "km2": "km²"
   },
   "errors": {
     "networkError": "Network error. Please check your connection.",

@@ -1,7 +1,7 @@
 import { useState, useEffect, memo } from 'react';
 import { View, TextInput, StyleSheet } from 'react-native';
-import { useDebounce } from '../hooks/useDebounce';
-import { colors, spacing, typography } from '../styles';
+import { useDebounce } from '../../../../hooks/useDebounce';    
+import { colors, spacing, typography } from '../../../../styles';
 
 interface SearchInputProps {
   placeholder?: string;
@@ -16,23 +16,8 @@ const SearchInputComponent = function SearchInput({
 }: SearchInputProps) {
   const [searchText, setSearchText] = useState('');
   const debouncedSearch = useDebounce(searchText, debounceMs);
-
-  // Log component mount/unmount
   useEffect(() => {
-    console.log('🎯 SearchInput: Component mounted');
-    return () => {
-      console.log('💀 SearchInput: Component unmounted');
-    };
-  }, []);
-
-  // Log searchText changes
-  useEffect(() => {
-    console.log('📝 SearchInput: searchText changed to:', `"${searchText}"`);
-  }, [searchText]);
-
-  // Call onSearch when debounced value changes
-  useEffect(() => {
-    console.log('🔍 SearchInput: debounced value changed:', `"${debouncedSearch}"`, 'searchText:', `"${searchText}"`);
+   
     onSearch(debouncedSearch);
   }, [debouncedSearch, onSearch]);
 

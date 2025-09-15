@@ -20,7 +20,18 @@
     "region": "Región",
     "noCapital": "Sin capital",
     "details": "Detalles del País",
-    "backToList": "Volver a Países"
+    "backToList": "Volver a Países",
+    "officialName": "Nombre Oficial",
+    "subregion": "Subregión",
+    "area": "Área",
+    "languages": "Idiomas",
+    "currencies": "Monedas",
+    "timezones": "Zonas Horarias",
+    "borders": "Fronteras",
+    "domains": "Dominios de Nivel Superior",
+    "continents": "Continentes",
+    "noData": "No hay datos disponibles",
+    "km2": "km²"
   },
   "errors": {
     "networkError": "Error de red. Por favor verifica tu conexión.",
