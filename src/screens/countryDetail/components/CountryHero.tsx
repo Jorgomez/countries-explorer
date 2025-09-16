@@ -1,6 +1,6 @@
 import React from 'react';
 import { View, Text } from 'react-native';
-import { t } from '../../../localization';
+import { useLanguage } from '../../../hooks/useLanguage';
 import type { CountryDetail } from '../../../types/country';
 
 interface CountryHeroProps {
@@ -9,6 +9,7 @@ interface CountryHeroProps {
 }
 
 export default function CountryHero({ country, styles }: CountryHeroProps) {
+  const { t } = useLanguage();
   const renderInfoRow = (label: string, value: string | number | undefined) => {
     const displayValue = value !== undefined && value !== null && value !== '' 
       ? value.toString() 

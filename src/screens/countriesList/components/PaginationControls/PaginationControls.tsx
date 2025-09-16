@@ -1,5 +1,5 @@
 import { View, Text, TouchableOpacity } from 'react-native';
-import { t } from '../../../../localization';
+import { useLanguage } from '../../../../hooks/useLanguage';
 import { styles } from './PaginationControlsStyles';
 
 interface PaginationControlsProps {
@@ -17,6 +17,8 @@ export default function PaginationControls({
   onNext, 
   onPrevious 
 }: PaginationControlsProps) {
+  const { t } = useLanguage();
+
   return (
     <View style={styles.pagination}>
       <TouchableOpacity

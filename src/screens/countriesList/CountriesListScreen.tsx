@@ -2,10 +2,11 @@ import { View, Text, FlatList } from 'react-native';
 import { useState, useCallback } from 'react';
 import { useRouter } from 'expo-router';
 import { useCountries } from '../../hooks/useCountries';
-import { t } from '../../localization';
+import { useLanguage } from '../../hooks/useLanguage';
 import { styles } from './CountriesListStyles';
 import type { CountryCard } from '../../types/country';
 import StateDisplay from '../../components/StateDisplay/StateDisplay';
+import AppHeader from '../../components/AppHeader/AppHeader';
 import { SearchInput } from './components/SearchInput/SearchInput';
 import PaginationControls from './components/PaginationControls/PaginationControls';
 import CountryCardComponent from './components/CountryCard/CountryCard';
@@ -14,6 +15,7 @@ import CountryCardComponent from './components/CountryCard/CountryCard';
 export default function CountriesListScreen() {
   const [searchQuery, setSearchQuery] = useState('');
   const router = useRouter();
+  const { t } = useLanguage();
   
   const {
     countries,
@@ -38,7 +40,11 @@ export default function CountriesListScreen() {
 
   return (
     <View style={styles.container}>
-      <Text style={styles.title}>{t('countries.title')}</Text>
+      <AppHeader 
+        title={t('countries.title')} 
+        showBackButton={false}
+        showLanguageSelector={true}
+      />
       
       <SearchInput
         placeholder={t('countries.searchPlaceholder')}
