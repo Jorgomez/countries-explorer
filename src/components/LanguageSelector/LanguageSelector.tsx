@@ -1,22 +1,37 @@
 import { Text, TouchableOpacity, StyleSheet } from 'react-native';
 import { useLanguageStore } from '../../stores/languageStore';
+import { useLanguage } from '../../hooks/useLanguage';
 
 export default function LanguageSelector() {
   const { currentLanguage, setLanguage } = useLanguageStore();
+  const { t } = useLanguage();
 
   const toggleLanguage = () => {
     const newLanguage = currentLanguage === 'en' ? 'es' : 'en';
     setLanguage(newLanguage);
   };
 
+  const getLanguageDisplay = () => {
+    
+    return currentLanguage === 'en' ? 'ES' : 'EN';
+  };
+
+  const getAccessibilityLabel = () => {
+    return currentLanguage === 'en' 
+      ? t('language.changeToSpanish')
+      : t('language.changeToEnglish');
+  };
+
   return (
     <TouchableOpacity
       style={styles.button}
       onPress={toggleLanguage}
-      accessibilityLabel={`Change language to ${currentLanguage === 'en' ? 'Spanish' : 'English'}`}
+      accessibilityLabel={getAccessibilityLabel()}
+      accessibilityRole="button"
+      accessibilityHint={t('language.changeLanguageHint')}
     >
       <Text style={styles.buttonText}>
-        {currentLanguage.toUpperCase()}
+        {getLanguageDisplay()}
       </Text>
     </TouchableOpacity>
   );
