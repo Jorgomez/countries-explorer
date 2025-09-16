@@ -41,4 +41,6 @@ export const styles = StyleSheet.create({
     color: colors.textSecondary,
     lineHeight: 20,
   },
+
+
 });

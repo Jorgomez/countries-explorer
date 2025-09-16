@@ -42,7 +42,15 @@
   "language": {
     "select": "Seleccionar Idioma",
     "english": "English",
-    "spanish": "Español"
+    "spanish": "Español",
+    "changeToSpanish": "Cambiar idioma a Español",
+    "changeToEnglish": "Cambiar idioma a Inglés",
+    "changeLanguageHint": "Toca para cambiar el idioma de la aplicación"
+  },
+  "accessibility": {
+    "flagOf": "Bandera de {{country}}",
+    "viewDetails": "Ver detalles de {{country}}",
+    "viewDetailsHint": "Toca para ver información detallada del país"
   },
   "pagination": {
     "page": "Página {{current}} de {{total}}",

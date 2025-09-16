@@ -1,5 +1,5 @@
 import { View, Text, FlatList } from 'react-native';
-import { useState, useCallback } from 'react';
+import { useState, useCallback, useRef } from 'react';
 import { useRouter } from 'expo-router';
 import { useCountries } from '../../hooks/useCountries';
 import { useLanguage } from '../../hooks/useLanguage';
@@ -16,6 +16,7 @@ export default function CountriesListScreen() {
   const [searchQuery, setSearchQuery] = useState('');
   const router = useRouter();
   const { t } = useLanguage();
+  const isNavigatingRef = useRef(false);
   
   const {
     countries,
@@ -31,7 +32,18 @@ export default function CountriesListScreen() {
   } = useCountries(searchQuery);
 
   const handleCountryPress = useCallback((country: CountryCard) => {
+    // Prevent double navigation with debounce
+    if (isNavigatingRef.current) {
+      return;
+    }
+    
+    isNavigatingRef.current = true;
     router.push(`/country/${country.id}`);
+    
+    // Reset flag after navigation
+    setTimeout(() => {
+      isNavigatingRef.current = false;
+    }, 1000);
   }, [router]);
 
   const renderCountry = ({ item }: { item: CountryCard }) => (
