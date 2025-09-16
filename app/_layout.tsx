@@ -1,17 +1,27 @@
 import { Stack } from 'expo-router';
-import { useEffect } from 'react';
-import { languageManager } from '../src/localization';
+import { useLanguage } from '../src/hooks/useLanguage';
 
 export default function RootLayout() {
-  useEffect(() => {
-    // Initialize language on app start
-    languageManager.initialize();
-  }, []);
+  const { isInitialized } = useLanguage();
+
+  if (!isInitialized) {
+    return null; 
+  }
 
   return (
     <Stack>
-      <Stack.Screen name="index" options={{ title: 'Countries Explorer' }} />
-      <Stack.Screen name="country/[id]" options={{ title: 'Country Details' }} />
+      <Stack.Screen 
+        name="index" 
+        options={{ 
+          headerShown: false,
+        }} 
+      />
+      <Stack.Screen 
+        name="country/[id]" 
+        options={{ 
+          headerShown: false,
+        }} 
+      />
     </Stack>
   );
 }

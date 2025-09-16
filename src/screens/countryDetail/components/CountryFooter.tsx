@@ -1,6 +1,6 @@
 import React from 'react';
 import { View, Text } from 'react-native';
-import { t } from '../../../localization';
+import { useLanguage } from '../../../hooks/useLanguage';
 import type { CountryDetail } from '../../../types/country';
 
 interface CountryFooterProps {
@@ -9,6 +9,7 @@ interface CountryFooterProps {
 }
 
 export default function CountryFooter({ country, styles }: CountryFooterProps) {
+  const { t } = useLanguage();
   const renderList = (items: string[], emptyMessage: string) => {
     if (!items || items.length === 0) {
       return <Text style={styles.noDataText}>{emptyMessage}</Text>;

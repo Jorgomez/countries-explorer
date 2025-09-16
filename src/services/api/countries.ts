@@ -1,56 +1,7 @@
 import axios from 'axios';
 import type { Country, CountryCard, CountryDetail } from '../../types/country';
 import { API_ENDPOINTS, API_FIELDS } from '../../utils/constants';
-
-// Transform Country to CountryCard for UI
-const transformCountry = (country: Country): CountryCard => ({
-  id: country.cca3,
-  name: country.name.common,
-  flag: country.flags.png,
-  capital: country.capital?.[0] || '—',
-  population: country.population,
-  region: country.region,
-});
-
-// Transform Country to CountryDetail for detail screen
-const transformCountryDetail = (country: Country): CountryDetail => {
-  try {
-    if (!country) {
-      throw new Error('Country data is null or undefined');
-    }
-    
-    if (!country.cca3) {
-      throw new Error('Country is missing cca3 code');
-    }
-    
-    if (!country.name?.common) {
-      throw new Error('Country is missing name');
-    }
-    
-    const result: CountryDetail = {
-      id: country.cca3,
-      name: country.name.common,
-      officialName: country.name.official || country.name.common,
-      flag: country.flags?.png || country.flags?.svg || '',
-      flagSvg: country.flags?.svg || '',
-      capital: Array.isArray(country.capital) ? country.capital[0] : country.capital || 'N/A',
-      population: country.population || 0,
-      region: country.region || 'Unknown',
-      subregion: country.subregion || 'Unknown',
-      area: country.area || 0,
-      languages: country.languages ? Object.values(country.languages) : [],
-      currencies: country.currencies ? Object.values(country.currencies).map(c => c.name) : [],
-      timezones: country.timezones || [],
-      borders: country.borders || [],
-      topLevelDomains: country.tld || [],
-      continents: country.continents || [],
-    };
-    
-    return result;
-  } catch (error) {
-    throw error;
-  }
-};
+import { transformToCountryCard, transformToCountryDetail } from '../../utils/transformers';
 
 export const countriesApi = {
   async getAllCountries(fields?: string): Promise<CountryCard[]> {
@@ -60,7 +11,7 @@ export const countriesApi = {
         `${API_ENDPOINTS.ALL}?fields=${fieldsParam}`
       );
       
-      return response.data.map(transformCountry);
+      return response.data.map(transformToCountryCard);
     } catch (error) {
       if (axios.isAxiosError(error)) {
         throw new Error(`Error fetching countries: ${error.message}`);
@@ -76,7 +27,7 @@ export const countriesApi = {
         `${API_ENDPOINTS.BY_NAME(query)}?fields=${fieldsParam}`
       );
       
-      return response.data.map(transformCountry);
+      return response.data.map(transformToCountryCard);
     } catch (error) {
       if (axios.isAxiosError(error)) {
         if (error.response?.status === 404) {
@@ -105,7 +56,7 @@ export const countriesApi = {
         throw new Error(`No country data found for code ${code}`);
       }
       
-      const result = transformCountryDetail(countryData);
+      const result = transformToCountryDetail(countryData);
       return result;
     } catch (error) {
       
